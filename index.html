@@ -4,6 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spin Wheel App</title>
     <!-- Google Font -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script> 
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
       rel="stylesheet"
@@ -15,11 +17,11 @@
     <div class="wrapper">
       <div class="container">
         <canvas id="wheel"></canvas>
-        <button id="spin-btn">Spin</button>
+        <button id="spin-btn">Find</button>
         <img src="https://www.pngmart.com/files/22/Star-Emojis-Download-PNG-Image.png" alt="spinner-arrow" />
       </div>
       <div id="final-value">
-        <p>Click On The Spin Button To Start</p>
+        <p>Click Find , To Find The Gem</p>
       </div>
     </div>
     <!-- Chart JS -->
@@ -114,13 +116,13 @@ const spinBtn = document.getElementById("spin-btn");
 const finalValue = document.getElementById("final-value");
 //Object that stores values of minimum and maximum angle for a value
 const rotationValues = [
-  { minDegree: 0, maxDegree: 30, value: 2 },
-  { minDegree: 31, maxDegree: 90, value: 1 },
-  { minDegree: 91, maxDegree: 150, value: 6 },
-  { minDegree: 151, maxDegree: 210, value: 5 },
-  { minDegree: 211, maxDegree: 270, value: 4 },
-  { minDegree: 271, maxDegree: 330, value: 3 },
-  { minDegree: 331, maxDegree: 360, value: "hi" },
+  { minDegree: 0, maxDegree: 30, value: "Believe Me or Not, You\'re The Blue Gem!" },
+  { minDegree: 31, maxDegree: 90, value: "You\'ll Get The Gem Within a Few Minutes!" },
+  { minDegree: 91, maxDegree: 150, value: "Love Yourself, The Blue Gem Will Find You!" },
+  { minDegree: 151, maxDegree: 210, value: "You\'re a Rarest Gem! The Chance U were Born Is 1/7.5 Billion" },
+  { minDegree: 211, maxDegree: 270, value: "Dig More Deeper In Your Thoughts, To Find The Real Gem!" },
+  { minDegree: 271, maxDegree: 330, value: "I Heard You've Got A Yt Channel? Hope You Reach More Soon!" },
+  { minDegree: 331, maxDegree: 360, value: "The World\'s Rarest Gem Is Blue Diamond! And I Like Your Eyes!" },
 ];
 //Size of each piece
 const data = [16, 16, 16, 16, 16, 16];
@@ -141,7 +143,7 @@ let myChart = new Chart(wheel, {
   type: "pie",
   data: {
     //Labels(values which are to be displayed on chart)
-    labels: [1, 2, 3, 4, 5, 6],
+    labels: ["Way 1", "Way 2", "Way 3", "Way 4", "Way 5", "Way 6"],
     //Settings for dataset/pie
     datasets: [
       {
@@ -174,8 +176,8 @@ const valueGenerator = (angleValue) => {
   for (let i of rotationValues) {
     //if the angleValue is between min and max then display it
     if (angleValue >= i.minDegree && angleValue <= i.maxDegree) {
-      finalValue.innerHTML = `<p>Value: ${i.value}</p>`;
-      alert(i.value)
+      finalValue.innerHTML = `<p>${i.value}</p>`;
+      swal(""+i.value+" ")
       spinBtn.disabled = false;
       break;
     }
